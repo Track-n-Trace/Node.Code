@@ -8,12 +8,13 @@ var ibmpush = require('ibmpush');
 var geojson = require('geojson-utils');
 var session = require('express-session');
 
+//Push notifications credentials
+//applicationRoute: <APP-NAME>.mybluemix.net
 var appConfig = {
-    applicationId: "f1e442d6-79bb-4e42-baee-3da1d7ac583c",
-    applicationRoute: "http://node-code.mybluemix.net",
-    applicationSecret: "d59b875fbe53ed4340df9304747bf182d2bba0ea"
+    applicationId: <APPLICATION-ID>,
+    applicationRoute: <ROUTE FOR APPLICATION>,
+    applicationSecret: <APPLICATION SECRET>
 };
-
 
 ibmbluemix.initialize(appConfig);
 //var logger = ibmbluemix.getLogger();
@@ -145,16 +146,6 @@ function initDBConnection() {
 		}
 		console.log('VCAP Services: '+JSON.stringify(process.env.VCAP_SERVICES));
 	}
-	  else{
-	    dbCredentials.host = "f0549f34-78ea-44d4-9abe-efd87b2286d3-bluemix.cloudant.com";
-			dbCredentials.port = 443;
-			dbCredentials.user = "f0549f34-78ea-44d4-9abe-efd87b2286d3-bluemix";
-			dbCredentials.password = "f6fe0f1a13a6c758ca4d45b4ef2b41ec9e329f04199635762f6db15e16803fc6";
-			dbCredentials.url = "https://f0549f34-78ea-44d4-9abe-efd87b2286d3-bluemix:f6fe0f1a13a6c758ca4d45b4ef2b41ec9e329f04199635762f6db15e16803fc6@f0549f34-78ea-44d4-9abe-efd87b2286d3-bluemix.cloudant.com";
-	  	user = "a-rgecs9-wssdsn55el";
-			pass = "6vCRrc9UaFE?kwO@Z3";
-			org = "rgecs9";
-	  }
 
 	cloudant = require('cloudant')(dbCredentials.url);
 	
@@ -750,22 +741,6 @@ function insertToDb(jsn,name){
 	});
 	return ret;
 };
-
-
-// var jsn = {
-// 	"Num": 5
-// };
-// insertToDb(jsn,"test2");
-
-
-		
- //var a = geojson.pointInPolygon({"type":"Point","coordinates":[13,77,0]},{"type":"Polygon", "coordinates":[[[0,0],[6,0],[6,6],[0,6]]]})
-
-
-//var a = geojson.pointInPolygon({"type":"Point","coordinates":[13,77,0]},{"type":"Polygon", "coordinates":[[[0,0],[6,0],[6,6],[0,6]]]})
-
-// console.log(a);
-
 
 // start server on the specified port and binding host
 Array.prototype.difference = function(e) {
